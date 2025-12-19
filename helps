@@ -1,0 +1,96 @@
+public class Main {
+    public static void main(String[] args) {
+
+        Student student = new Student("John Doe");
+
+        student.addCourse(0, new Course("Math", 95));
+        student.addCourse(1, new Course("English", 88));
+        student.addCourse(2, new Course("Science", 92));
+        student.addCourse(3, new Course("History", 76));
+        student.addCourse(4, new Course("Computer Science", 99));
+        student.addCourse(5, new Course("Spanish", 84));
+        student.addCourse(6, new Course("Physics", 90));
+
+        student.printStudentInfo();
+    }
+}
+
+public class Course {
+    private String courseName;
+    private int grade;
+    private String letterGrade;
+
+    public Course(String courseName, int grade) {
+        this.courseName = courseName;
+        this.grade = grade;
+        determineLetterGrade();
+    }
+
+    private void determineLetterGrade() {
+        if (grade >= 90) {
+            letterGrade = "A";
+        } else if (grade >= 80) {
+            letterGrade = "B";
+        } else if (grade >= 70) {
+            letterGrade = "C";
+        } else if (grade >= 60) {
+            letterGrade = "D";
+        } else {
+            letterGrade = "F";
+        }
+    }
+
+    public int getGrade() {
+        return grade;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public String getLetterGrade() {
+        return letterGrade;
+    }
+
+    public void printCourse() {
+        System.out.println(courseName + ": " + grade + " (" + letterGrade + ")");
+    }
+}
+
+public class Student {
+    private String name;
+    private Course[] courses;
+
+    public Student(String name) {
+        this.name = name;
+        courses = new Course[7];
+    }
+
+    public void addCourse(int index, Course course) {
+        courses[index] = course;
+    }
+
+    public Course getHighestGrade() {
+        Course highest = courses[0];
+
+        for (int i = 1; i < courses.length; i++) {
+            if (courses[i].getGrade() > highest.getGrade()) {
+                highest = courses[i];
+            }
+        }
+        return highest;
+    }
+
+    public void printStudentInfo() {
+        System.out.println("Student Name: " + name);
+        System.out.println("Courses and Grades:");
+
+        for (Course c : courses) {
+            c.printCourse();
+        }
+
+        Course highest = getHighestGrade();
+        System.out.println("\nHighest Grade:");
+        System.out.println(highest.getCourseName() + " - " + highest.getGrade());
+    }
+}
