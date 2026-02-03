@@ -1,0 +1,164 @@
+class GameB/*BlackJack*/{
+
+
+    //Declarations
+        Scanner inputB = new Scanner(System.in);
+        int wallet = 1000;
+
+        //Activate Game
+            public void start() {
+
+        //Game Starts...
+            System.out.println("--- Starting the Game! ---");
+            System.out.println(" ");
+     
+        //Game Active
+            //Utilize a Boolean to continue the game's loop
+                 boolean playing = true;
+                 
+            //Wallet Code (How it works and flow of money
+                 while (playing && wallet > 0) {
+
+                    //Display current cash
+                        System.out.println("Current Wallet: $" + wallet);
+                        System.out.println(" ");
+            
+                // Deal 2 Cards (USE CardGen Class)(A & B)
+                    //Card generation
+                        CardGen c = new CardGen();
+                            
+                        //Get all cards needed
+                            int cardA2 = c.getCardA2();
+                            int cardB2 = c.getCardB2();
+                            int cardC2 = c.getCardC2();
+                            int cardD2 = c.getCardD2();
+                            int cardE2 = c.getCardE2();
+                            int cardF2 = c.getCardF2();
+                            int cardG2 = c.getCardG2();
+                            int cardH2 = c.getCardH2();
+                        
+                        //Only 'deal' (print) two cards
+                            //two to user(2 up)& two to computer (1 up & 1 down)
+                                
+                //Bet Code
+                
+                    int betB = 0;
+                
+                    //Ask user for bet 
+                        while (true) {
+                            System.out.println("Will you buy in $50? If yes, enter the money");
+    
+                        if (inputB.hasNextInt()) {
+                            betB = inputB.nextInt();
+                                inputB.nextLine(); // consume leftover newline
+        
+                            System.out.println("Please");
+                        if (betB > 49 && betB < 51 && betB <= wallet) { //Ensures a $25 bet
+                            break; // valid bet, exit loop
+                        }
+                             else {
+                                System.out.println("Bet must be $50");
+                            }
+                        
+                            } else {
+                                System.out.println("Please enter a valid number. Bet is $50");
+                                inputB.nextLine(); // clear invalid input
+                            }
+                        }
+                        
+                        //Take out bet
+                            wallet -= betB;
+                        
+                 //Display these cards w/ cool graphics
+                 System.out.println("--Dispensing-Cards--");
+                        
+                        //Formatting User Cards
+                            if (cardA2 < 10 && cardB2 < 10){
+                                System.out.println( " _______       _______");
+                                System.out.println( "|" + cardA2 + "      |     |" + cardB2 + "      |");
+                                System.out.println( "|       |     |       |");
+                                System.out.println( "|       |     |       |");
+                                System.out.println( "|      " + cardA2 + "|     |      " + cardB2 + "|");
+                                System.out.println( " -------       -------");
+                            }
+                            else if (cardA2 >= 10 && cardB2 >= 10){
+                                System.out.println( " _______       _______");
+                                System.out.println( "|" + cardA2 + "     |     |" + cardB2 + "     |");
+                                System.out.println( "|       |     |       |");
+                                System.out.println( "|       |     |       |");
+                                System.out.println( "|     " + cardA2 + "|     |     " + cardB2 + "|");
+                                System.out.println( " -------       -------");
+                                }
+                            else if (cardA2 < 10 && cardB2 >= 10){
+                                System.out.println( " _______       _______");
+                                System.out.println( "|" + cardA2 + "      |     |" + cardB2 + "     |");
+                                System.out.println( "|       |     |       |");
+                                System.out.println( "|       |     |       |");
+                                System.out.println( "|      " + cardA2 + "|     |     " + cardB2 + "|");
+                                System.out.println( " -------       -------");
+                            }
+                            else if (cardA2 >= 10 && cardB2 < 10){
+                                System.out.println( " _______       _______");
+                                System.out.println( "|" + cardA2 + "     |     |" + cardB2 + "      |");
+                                System.out.println( "|       |     |       |");
+                                System.out.println( "|       |     |       |");
+                                System.out.println( "|     " + cardA2 + "|     |      " + cardB2 + "|");
+                                System.out.println( " -------       -------");
+                            }
+                        
+                            
+                        //Formatting Dealer Cards
+                            if (cardC2 < 10 && cardD2 < 10){
+                                System.out.println( " _______       _______");
+                                System.out.println( "|" + cardC2 + "      |     |" + cardD2 + "      |");
+                                System.out.println( "|       |     |       |");
+                                System.out.println( "|       |     |       |");
+                                System.out.println( "|      " + cardC2 + "|     |      " + cardD2 + "|");
+                                System.out.println( " -------       -------");
+                            }
+                            else if (cardC2 >= 10 && cardD2 >= 10){
+                                System.out.println( " _______       _______");
+                                System.out.println( "|" + cardC2 + "     |     |" + cardD2 + "     |");
+                                System.out.println( "|       |     |       |");
+                                System.out.println( "|       |     |       |");
+                                System.out.println( "|     " + cardC2 + "|     |     " + cardD2 + "|");
+                                System.out.println( " -------       -------");
+                                }
+                            else if (cardC2 < 10 && cardD2 >= 10){
+                                System.out.println( " _______       _______");
+                                System.out.println( "|" + cardC2 + "      |     |" + cardD2 + "     |");
+                                System.out.println( "|       |     |       |");
+                                System.out.println( "|       |     |       |");
+                                System.out.println( "|      " + cardC2 + "|     |     " + cardD2 + "|");
+                                System.out.println( " -------       -------");
+                            }
+                            else if (cardC2 >= 10 && cardD2 < 10){
+                                System.out.println( " _______       _______");
+                                System.out.println( "|" + cardC2 + "     |     |" + cardD2 + "      |");
+                                System.out.println( "|       |     |       |");
+                                System.out.println( "|       |     |       |");
+                                System.out.println( "|     " + cardC2 + "|     |      " + cardD2 + "|");
+                                System.out.println( " -------       -------");
+                            }
+                            
+                        //Lil Stat Update:
+                            int userDealVal = cardA2 + cardB2;
+                            int dealerDealVal = cardC2 + cardD2;
+                            System.out.println("User: " + userDealVal);
+                            System.out.println("Dealer: " + cardC2 + " showing...");
+                            
+                        //What happens now?
+                            //In case of Loss off of RIP
+                                if (userDealVal > 21) {
+                                    System.out.println("You've exceeded 21! Let's see what the Dealer has...");
+                                    if (dealerDealVal >= 16){
+                                        System.out.println("Dealer wins with " + dealerDealVal);
+                                        System.out.println("");
+                                    }
+                                }
+                 }
+            
+            
+            
+            }
+}
